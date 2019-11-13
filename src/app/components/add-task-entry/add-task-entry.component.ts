@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AlertService } from "./../../services/alert.service";
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-add-task-entry',
@@ -41,12 +42,13 @@ export class AddTaskEntryComponent implements OnInit {
       private route: ActivatedRoute,
       private router: Router,
       //private authenticationService: AuthenticationService,
-      private alertService: AlertService
+      private alertService: AlertService,
+      private taskService: TaskService
   ) { }
 
   ngOnInit() {
     this.taskForm = this.formBuilder.group({
-      taskName: ['', Validators.required],
+      taskname: ['', Validators.required],
       project: ['', Validators.required]
   });
   }
@@ -61,6 +63,16 @@ export class AddTaskEntryComponent implements OnInit {
     }
 
     this.loading = true;
+    this.taskService.addTask(this.taskForm.value)
+    .subscribe(
+      data => {
+          this.alertService.success('Task added successful', true);
+          this.router.navigate(['/taskConsole']);
+      },
+      error => {
+          this.alertService.error(error);
+          this.loading = false;
+      });
   }
 
 }

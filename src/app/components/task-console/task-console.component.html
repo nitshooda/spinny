@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+                <td >Task Name</td>
+                <td >Project Name</td>
+                <td></td>
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of tasklist">
+            <td width="30%">{{row.taskname}}</td>
+            <td width="30%">{{row.project}}</td>
+            <td>
+                <button onclick="action('start', row)"><i class="fas fa-play"></i></button>
+                <button onclick="action('pause', row)"><i class="fas fa-pause"></i></button>
+                <button onclick="action('end', row)"><i class="fas fa-stop-circle"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

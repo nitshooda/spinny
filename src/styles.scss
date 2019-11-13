@@ -8,3 +8,16 @@
         padding: 10px 30%;  
       }
 }
+
+table {
+  width: 100%;
+  tr {    
+    background-color: #f3f2f2;
+    border-top: #b7b7b7 1px solid;
+    border-bottom: #b7b7b7 1px solid;
+
+    td{
+      padding: 5px;
+    }
+  }
+}

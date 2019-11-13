@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AddTaskEntryComponent } from './components/add-task-entry/add-task-entry.component';
 import { TaskHistoryComponent } from './components/task-history/task-history.component';
+import { TaskConsoleComponent } from './components/task-console/task-console.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TaskHistoryComponent } from './components/task-history/task-history.com
     LoginComponent,
     RegisterComponent,
     AddTaskEntryComponent,
-    TaskHistoryComponent
+    TaskHistoryComponent,
+    TaskConsoleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
