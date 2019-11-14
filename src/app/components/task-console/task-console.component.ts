@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
+import { Router } from '@angular/router';
+import { TaskAction, TaskStatus } from 'src/app/models/enum';
+import { TaskActionRequest } from 'src/app/models/task';
+import { request } from 'http';
 
 @Component({
   selector: 'app-task-console',
@@ -8,24 +12,38 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class TaskConsoleComponent implements OnInit {
   tasklist: any =  [];
-  constructor(private taskService: TaskService) { }
+  taskAction = TaskAction;
+  constructor( private router: Router, private taskService: TaskService) { }
 
   ngOnInit() {
     this.taskService.getAllTasks()
-    .subscribe((data: any)=>{
+    .subscribe((data: any) => {
       this.tasklist = data.result;
-    })
+    });
   }
 
-  action(type, task){
-    switch(type){
-      case 'start':
-        break;
-      case 'pause':
-        break;
-      case 'stop':
-        break;
+  action(type, task) {
+    const taskActionRequest = new TaskActionRequest();
+    switch (type) {
+      case this.taskAction.Start:
+          taskActionRequest.taskStatus = taskActionRequest.taskStatus === TaskStatus.Unattended ? TaskStatus.Started : TaskStatus.Resumed;
+          break;
+      case this.taskAction.Pause:
+          taskActionRequest.taskStatus = TaskStatus.Paused;
+          break;
+      case this.taskAction.Stop:
+          taskActionRequest.taskStatus = TaskStatus.Ended;
+          break;
     }
+    taskActionRequest.taskId = task.TaskId;
+    this.taskService.actionDone(taskActionRequest)
+    .subscribe((data: any) => {
+
+    });
+  }
+
+  addNewTask() {
+    this.router.navigate(['/addNewTask']);
   }
 
 }

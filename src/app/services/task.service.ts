@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Task } from '../models/task';
+import { Task, TaskActionRequest } from '../models/task';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,11 @@ export class TaskService {
     return this.http.post('http://localhost:8080/addTask', task);
   }
 
-  getAllTasks(){
+  getAllTasks() {
     return this.http.get('http://localhost:8080/getAllTasks');
+  }
+
+  actionDone(actionrequest: TaskActionRequest) {
+    return this.http.post('http://localhost:8080/taskAction', actionrequest);
   }
 }
