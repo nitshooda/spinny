@@ -20,4 +20,8 @@ export class TaskService {
   actionDone(actionrequest: TaskActionRequest) {
     return this.http.post('http://localhost:8080/taskAction', actionrequest);
   }
+
+  getTaskHistory(taskId: string){
+    return this.http.get('http://localhost:8080/getTaskHistory?taskId=' + taskId);
+  }
 }

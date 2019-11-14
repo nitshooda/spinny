@@ -3,7 +3,7 @@
         <div class="row justify-content-between">
    
                 <h2 class="col">Task Console</h2>
-                <button class="col-auto btn btn-primary" onclick="addNewTask()">Add New Task</button>
+                <button class="col-auto btn btn-primary" (click)="addNewTask()">Add New Task</button>
             </div>
             <h2></h2>
             <table>
@@ -11,6 +11,7 @@
                     <tr>
                             <td >Task Name</td>
                             <td >Project Name</td>
+                            <td></td>
                             <td></td>
                     </tr>
                     
@@ -20,9 +21,12 @@
                         <td width="30%">{{row.taskname}}</td>
                         <td width="30%">{{row.project}}</td>
                         <td>
-                            <button onclick="action('start', row)"><i class="fas fa-play"></i></button>
-                            <button onclick="action('pause', row)"><i class="fas fa-pause"></i></button>
-                            <button onclick="action('end', row)"><i class="fas fa-stop-circle"></i></button>
+                            <button class="mr-2" *ngIf="row.taskStatus == taskStatuses.Unattended || row.taskStatus == taskStatuses.Paused" (click)="action(taskActions.Start, row)"><i class="fas fa-play"></i></button>
+                            <button class="mr-2" *ngIf="row.taskStatus == taskStatuses.Started || row.taskStatus == taskStatuses.Resumed" (click)="action(taskActions.Pause, row)"><i class="fas fa-pause"></i></button>
+                            <button class="mr-2" *ngIf="row.taskStatus == taskStatuses.Started || row.taskStatus == taskStatuses.Resumed || row.taskStatus == taskStatuses.Paused" (click)="action(taskActions.Stop, row)"><i class="fas fa-stop-circle"></i></button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary" (click)="viewTaskHistory(row)">View History</button>
                         </td>
                     </tr>
                 </tbody>

@@ -1,1 +1,25 @@
-<p>task-history works!</p>
+
+<div class="px-5">
+    <div class="row justify-content-between">
+
+            <h2 class="col">Task History({{taskname}})</h2>
+            <a routerLink="/register" class="btn btn-link">Go back to Console</a>
+        </div>
+        <h2></h2>
+        <table>
+            <thead>
+                <tr>
+                        <td >Action</td>
+                        <td >Time</td>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of taskHistory">
+                    <td width="30%">{{row.taskStatusDesc}}</td>
+                    <td width="30%">{{row.createdAt | date: 'medium'}}</td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
