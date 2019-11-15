@@ -9,12 +9,12 @@ import { TaskConsoleComponent } from './components/task-console/task-console.com
 
 
 const routes: Routes = [
-  { path: '', component: TaskConsoleComponent},// canActivate: [AuthGuard] },
-  { path: 'addNewTask', component: AddTaskEntryComponent},// canActivate: [AuthGuard]},
+  { path: '', component: TaskConsoleComponent, canActivate: [AuthGuard] },
+  { path: 'addNewTask', component: AddTaskEntryComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'taskConsole', component: TaskConsoleComponent},// canActivate: [AuthGuard]},
-  { path: 'taskHistory', component: TaskHistoryComponent},//canActivate: [AuthGuard]},
+  { path: 'taskConsole', component: TaskConsoleComponent, canActivate: [AuthGuard]},
+  { path: 'taskHistory', component: TaskHistoryComponent,canActivate: [AuthGuard]},
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
